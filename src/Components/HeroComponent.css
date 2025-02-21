@@ -1,0 +1,20 @@
+.hero{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.hero-image {
+  width: 78%; /* 80% of the parent's width */
+  height:430px;
+   /* 60% of the parent's height */
+ 
+}
+.btn{
+  margin-top: 10px;
+  max-width:150px;
+  height:40px;
+  border-radius: 20px ;
+  border:2px solid #fff;
+  font-family: 'Poppins';
+  font-size:0.77rem;
+}
