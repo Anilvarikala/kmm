@@ -8,12 +8,20 @@ import Speciality from "../../Components/Speciality/Speciality";
 import { db, auth } from "../../firebase"; // Assuming Firebase is set up
 import { doc, getDoc } from "firebase/firestore";
 import AiQueryComponent from "../../Components/ChatBot/AiQueryComponent";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Home = () => {
   const [flag, setFlag] = useState(true);
   const [fla, setFla] = useState(false);
   const [isVerified, setIsVerified] = useState(true); // Default true (won't show button)
   const navigate = useNavigate();
+  const auth = getAuth();
+  const [user, setUser] = useState();
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setUser(true);
+    }
+  });
 
   useEffect(() => {
     const fetchDoctorVerificationStatus = async () => {
@@ -37,8 +45,8 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <br /><br />
-      {/* <br /><br /> */}
+      <br />
+      <br />
       <HeroComponent flag={flag} />
 
       {/* Show "Get Verified" button only if the doctor is NOT verified */}
@@ -64,18 +72,25 @@ const Home = () => {
       <Speciality />
       <Doctors />
       <HeroComponent flag={fla} />
-
-      <button
-        className="btn1"
-        style={{ position: "absolute", left: "15%", top: "575vh" }}
-      >
-        <Link
-          to="/doctor-signup"
-          style={{ textDecoration: "none", color: "black" }}
+      {!user && (
+        <button
+          className="btn1"
+          style={{
+            position: "absolute",
+            borderRadius: "20px",
+            left: "15%",
+            top: "560vh",
+            border: "2px solid white",
+          }}
         >
-          Create account?
-        </Link>
-      </button>
+          <Link
+            to="/doctor-signup"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            Create account?
+          </Link>
+        </button>
+      )}
 
       <Footer />
     </div>
