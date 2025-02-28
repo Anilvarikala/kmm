@@ -25,6 +25,7 @@ p {
 p strong {
   width: 150px;
   color: #34495e;
+  flex-shrink: 0;
 }
 
 input, textarea {
@@ -33,6 +34,7 @@ input, textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
+  width: 100%;
 }
 
 textarea {
@@ -68,4 +70,51 @@ textarea {
 
 .btn-save:hover {
   background-color: #27ae60;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 468px) {
+  p {
+    font-size: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  p strong {
+    margin-bottom: 5px;
+  }
+
+  input, textarea {
+    width: 100%;
+  }
+
+  .doctor-profile {
+    padding: 20px;
+    margin-bottom: 20px;
+    max-width: 288px;
+    max-height:900px;
+  }
+.book-button{
+  margin-bottom:15vh
+}
+  h2 {
+    font-size: 18px;
+  }
+  .doctor-image-container .si{
+       max-width:100px;
+       max-height:100px;
+  }
+  .doctor-profile{
+    margin-top:0;
+  }
+  .btn-edit{
+    position: absolute;
+    bottom:-200px;
+    width: 70%;
+    left:30px;
+  }
+  .edit{
+    min-height:1280px
+  }
 }

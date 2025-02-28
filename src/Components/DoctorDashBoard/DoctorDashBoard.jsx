@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../firebase"; // Firebase initialization
+import { db } from "../../firebase";
 import {
   collection,
   getDocs,
@@ -10,27 +10,26 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-import "./DoctorDashBoard.css"; // Import your CSS file for styling
+import "./DoctorDashBoard.css";
 
 const DoctorDashBoard = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [uid, setUid] = useState();
   const [appointments, setAppointments] = useState([]);
+  const [consultationReports, setConsultationReports] = useState({});
   const [selectedTime, setSelectedTime] = useState({});
   const [showTimeInput, setShowTimeInput] = useState(false);
   const [currentAppointmentId, setCurrentAppointmentId] = useState(null);
-  const [googleMeetLink, setGoogleMeetLink] = useState(""); // State for Google Meet link
-  const [meetingIdInputs, setMeetingIdInputs] = useState({}); // State for editable meeting ID for each appointment
+  const [googleMeetLink, setGoogleMeetLink] = useState("");
+  const [meetingIdInputs, setMeetingIdInputs] = useState({});
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUid(user.uid);
-        console.log("User UID:", user.uid); // Access UID here
-      } else {
-        console.log("No user is signed in");
       }
     });
-
     return unsubscribe;
   }, []);
 
@@ -39,33 +38,62 @@ const DoctorDashBoard = () => {
       if (uid) {
         const q = query(
           collection(db, "appointments"),
-          where("doctorId", "==", uid) // Filter by doctorId
+          where("doctorId", "==", uid)
         );
-
         const querySnapshot = await getDocs(q);
         const appointmentsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setAppointments(appointmentsData); // Set appointments to state
+        setAppointments(appointmentsData);
       }
     };
-
-    fetchAppointments(); // Fetch appointments on component mount
+    fetchAppointments();
   }, [uid]);
+
+  useEffect(() => {
+    const fetchConsultationReports = async () => {
+      try {
+        const reportsSnapshot = await getDocs(
+          collection(db, "consultationReports")
+        );
+        const reportsData = {};
+        reportsSnapshot.forEach((doc) => {
+          const data = doc.data();
+          const appointmentId = data.appointmentId;
+          if (!reportsData[appointmentId]) {
+            reportsData[appointmentId] = [];
+          }
+          reportsData[appointmentId].push(data.report);
+        });
+        setConsultationReports(reportsData);
+      } catch (error) {
+        console.error("Error fetching consultation reports:", error);
+      }
+    };
+    fetchConsultationReports();
+  }, []);
+  const [ismobile, setmobile] = useState(false);
+  useEffect(() => {
+    if (window.innerWidth <= 800) setmobile(true);
+  }),
+    [];
+  const closeModal = () => {
+    setSelectedImage(null);
+    setIsModalOpen(false);
+  };
 
   const handleAcceptAppointment = (appointmentId) => {
     setCurrentAppointmentId(appointmentId);
     setShowTimeInput(true);
-    // Generate a new Google Meet link when accepting the appointment
     const meetLink = "https://meet.google.com/landing";
-    setGoogleMeetLink(meetLink); // Save Google Meet link in state
+    setGoogleMeetLink(meetLink);
   };
 
   const handleRejectAppointment = async (appointmentId) => {
     try {
       const appointmentRef = doc(db, "appointments", appointmentId);
-      await updateDoc(appointmentRef, { status: "Rejected" }); // Update status to "Rejected"
+      await updateDoc(appointmentRef, { status: "Rejected" });
       setAppointments((prevAppointments) =>
         prevAppointments.map((appt) =>
           appt.id === appointmentId ? { ...appt, status: "Rejected" } : appt
@@ -93,8 +121,8 @@ const DoctorDashBoard = () => {
       const appointmentRef = doc(db, "appointments", currentAppointmentId);
       await updateDoc(appointmentRef, {
         status: "Accepted",
-        appointmentTime: selectedTime[currentAppointmentId], // Save the time
-        googleMeetLink, // Save the Google Meet link
+        appointmentTime: selectedTime[currentAppointmentId],
+        googleMeetLink,
       });
 
       setAppointments((prevAppointments) =>
@@ -104,14 +132,14 @@ const DoctorDashBoard = () => {
                 ...appt,
                 status: "Accepted",
                 appointmentTime: selectedTime[currentAppointmentId],
-                googleMeetLink, // Save Google Meet link
+                googleMeetLink,
               }
             : appt
         )
       );
       setShowTimeInput(false);
       setCurrentAppointmentId(null);
-      setGoogleMeetLink(""); // Reset Google Meet link after saving
+      setGoogleMeetLink("");
     } catch (error) {
       console.error("Error accepting appointment:", error);
     }
@@ -120,39 +148,35 @@ const DoctorDashBoard = () => {
   const handleMeetingIdChange = (appointmentId, event) => {
     setMeetingIdInputs({
       ...meetingIdInputs,
-      [appointmentId]: event.target.value, // Update meeting ID only for the current appointment
+      [appointmentId]: event.target.value,
     });
+  };
+
+  const openModal = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setIsModalOpen(true);
   };
 
   const handleSaveMeetingId = async (appointmentId) => {
     const meetingId = meetingIdInputs[appointmentId];
 
     if (!meetingId) {
-      alert("Meeting is successfully created!")
+      alert("Meeting is successfully created!");
       return;
     }
 
     try {
       const appointmentRef = doc(db, "appointments", appointmentId);
-      await updateDoc(appointmentRef, {
-        meetingId, // Save the meeting ID for the current appointment
-      });
+      await updateDoc(appointmentRef, { meetingId });
 
       setAppointments((prevAppointments) =>
         prevAppointments.map((appt) =>
-          appt.id === appointmentId
-            ? {
-                ...appt,
-                meetingId, // Update appointment with the new meeting ID
-              }
-            : appt
+          appt.id === appointmentId ? { ...appt, meetingId } : appt
         )
       );
-      // alert("Meeting is successfully created!")
-      // Clear the input field after saving
       setMeetingIdInputs((prevInputs) => {
         const updatedInputs = { ...prevInputs };
-        delete updatedInputs[appointmentId]; // Remove the input state for the updated appointment
+        delete updatedInputs[appointmentId];
         return updatedInputs;
       });
     } catch (error) {
@@ -161,90 +185,225 @@ const DoctorDashBoard = () => {
   };
 
   return (
-    <div>
-      <h2>Doctor Dashboard</h2>
-      <h3>Your Appointments</h3>
-      {appointments.length === 0 ? (
-        <p>No appointments scheduled.</p>
+    <>
+      {!ismobile ? (
+        <div className="doctor-dashboard">
+          <h2>Doctor Dashboard</h2>
+          <h3>Your Appointments</h3>
+          {appointments.length === 0 ? (
+            <p className="no-appointments">No appointments scheduled.</p>
+          ) : (
+            <div className="appointments-table-container">
+              <table className="appointments-table">
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                    <th>Time</th>
+                    <th>Google Meet Link</th>
+                    <th>Meeting ID</th>
+                    <th>Consultation Reports</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {appointments.map((appointment) => (
+                    <tr key={appointment.id}>
+                      <td>{appointment.patientName}</td>
+                      <td>{appointment.appointmentDate}</td>
+                      <td
+                        className={`status-${appointment.status.toLowerCase()}`}
+                      >
+                        {appointment.status}
+                      </td>
+                      <td>
+                        {appointment.status === "Pending" && (
+                          <>
+                            <button
+                              onClick={() =>
+                                handleAcceptAppointment(appointment.id)
+                              }
+                            >
+                              Accept
+                            </button>
+                            <button
+                              onClick={() =>
+                                handleRejectAppointment(appointment.id)
+                              }
+                            >
+                              Reject
+                            </button>
+                          </>
+                        )}
+                        {(appointment.status === "Accepted" ||
+                          appointment.status === "Rejected") && <span>-</span>}
+                      </td>
+                      <td>
+                        {appointment.status === "Rejected" ? (
+                          <span>-</span>
+                        ) : showTimeInput &&
+                          currentAppointmentId === appointment.id ? (
+                          <div>
+                            <input
+                              type="time"
+                              value={selectedTime[currentAppointmentId] || ""}
+                              onChange={handleTimeChange}
+                            />
+                            <button onClick={handleConfirmTime}>Confirm</button>
+                          </div>
+                        ) : (
+                          appointment.appointmentTime || "-"
+                        )}
+                      </td>
+                      <td>
+                        {appointment.status === "Rejected" ? (
+                          <span>-</span>
+                        ) : appointment.googleMeetLink ? (
+                          <a
+                            href={appointment.googleMeetLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Join Meeting
+                          </a>
+                        ) : (
+                          "-"
+                        )}
+                      </td>
+                      <td>
+                        {appointment.status === "Rejected" ? (
+                          <span>-</span>
+                        ) : appointment.status === "Accepted" ? (
+                          <div>
+                            <input
+                              type="text"
+                              value={
+                                meetingIdInputs[appointment.id] ||
+                                appointment.meetingId ||
+                                ""
+                              }
+                              onChange={(e) =>
+                                handleMeetingIdChange(appointment.id, e)
+                              }
+                              placeholder="Enter Meeting ID"
+                            />
+                            <button
+                              onClick={() =>
+                                handleSaveMeetingId(appointment.id)
+                              }
+                            >
+                              Save
+                            </button>
+                          </div>
+                        ) : (
+                          "-"
+                        )}
+                      </td>
+                      <td>
+                        {consultationReports[appointment.id]?.length > 0 ? (
+                          <ul className="report-list">
+                            {consultationReports[appointment.id].map(
+                              (reportUrl, index) => (
+                                <li
+                                  key={index}
+                                  onClick={() => openModal(reportUrl)}
+                                >
+                                  <img
+                                    src={reportUrl}
+                                    alt={`Report ${index + 1}`}
+                                    className="report-thumbnail"
+                                  />
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        ) : (
+                          <span>No reports</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          {isModalOpen && selectedImage && (
+            <div className="modal-overlay" onClick={closeModal}>
+              <div
+                className="modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="close-btn" onClick={closeModal}>
+                  &times;
+                </span>
+                <img
+                  src={selectedImage}
+                  alt="Consultation Report"
+                  className="modal-image"
+                />
+              </div>
+            </div>
+          )}
+        </div>
       ) : (
-        <div className="appointments-table-container">
-          <table className="appointments-table">
-            <thead>
-              <tr>
-                <th>Patient</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Actions</th>
-                <th>Time</th>
-                <th>Google Meet Link</th>
-                <th>Meeting ID</th>
-              </tr>
-            </thead>
-            <tbody>
+        <div className="doctor-dashboard">
+          <h2>Doctor Dashboard</h2>
+          <h3>Your Appointments</h3>
+          {appointments.length === 0 ? (
+            <p className="no-appointments">No appointments scheduled.</p>
+          ) : (
+            <div className="appointments-container">
               {appointments.map((appointment) => (
-                <tr key={appointment.id}>
-                  <td>{appointment.patientName}</td>
-                  <td>{appointment.appointmentDate}</td>
-                  <td
-                    className={
-                      appointment.status === "Accepted"
-                        ? "status-accepted"
-                        : appointment.status === "Rejected"
-                        ? "status-rejected"
-                        : "status-pending"
-                    }
-                  >
-                    {appointment.status}
-                  </td>
-                  <td>
+                <div className="appointment-card" key={appointment.id}>
+                  <div className="appointment-header">
+                    <h4>{appointment.patientName}</h4>
+                    <p>{appointment.appointmentDate}</p>
+                  </div>
+                  <div className="appointment-details">
+                    <p>
+                      Status:{" "}
+                      <span
+                        className={`status-${appointment.status.toLowerCase()}`}
+                      >
+                        {appointment.status}
+                      </span>
+                    </p>
                     {appointment.status === "Pending" && (
-                      <>
+                      <div>
                         <button
                           onClick={() =>
                             handleAcceptAppointment(appointment.id)
                           }
                         >
-                          Accept Appointment
+                          Accept
                         </button>
                         <button
                           onClick={() =>
                             handleRejectAppointment(appointment.id)
                           }
                         >
-                          Reject Appointment
+                          Reject
                         </button>
-                      </>
+                      </div>
                     )}
                     {(appointment.status === "Accepted" ||
-                      appointment.status === "Rejected") && (
-                      <span>-</span> // Display dash after completing the action
-                    )}
-                  </td>
-                  <td>
+                      appointment.status === "Rejected") && <span>-</span>}
                     {appointment.status === "Rejected" ? (
                       <span>-</span>
+                    ) : showTimeInput &&
+                      currentAppointmentId === appointment.id ? (
+                      <div>
+                        <input
+                          type="time"
+                          value={selectedTime[currentAppointmentId] || ""}
+                          onChange={handleTimeChange}
+                        />
+                        <button onClick={handleConfirmTime}>Confirm</button>
+                      </div>
                     ) : (
-                      showTimeInput &&
-                      currentAppointmentId === appointment.id && (
-                        <div>
-                          <label>Select Time: </label>
-                          <input
-                            type="time"
-                            value={selectedTime[currentAppointmentId] || ""}
-                            onChange={handleTimeChange}
-                          />
-                          <button onClick={handleConfirmTime}>
-                            Confirm Time
-                          </button>
-                        </div>
-                      )
+                      appointment.appointmentTime || "-"
                     )}
-                    {appointment.status === "Accepted" &&
-                      appointment.appointmentTime && (
-                        <span>{appointment.appointmentTime}</span>
-                      )}
-                  </td>
-                  <td>
                     {appointment.status === "Rejected" ? (
                       <span>-</span>
                     ) : appointment.googleMeetLink ? (
@@ -258,13 +417,10 @@ const DoctorDashBoard = () => {
                     ) : (
                       "-"
                     )}
-                  </td>
-                  <td>
                     {appointment.status === "Rejected" ? (
                       <span>-</span>
                     ) : appointment.status === "Accepted" ? (
                       <div>
-                        <label>Meeting ID:</label>
                         <input
                           type="text"
                           value={
@@ -280,20 +436,60 @@ const DoctorDashBoard = () => {
                         <button
                           onClick={() => handleSaveMeetingId(appointment.id)}
                         >
-                          Save Meeting ID
+                          Save
                         </button>
                       </div>
                     ) : (
                       "-"
                     )}
-                  </td>
-                </tr>
+                  </div>
+                  <div className="consultation-reports">
+                    {consultationReports[appointment.id]?.length > 0 ? (
+                      <ul className="report-list">
+                        {consultationReports[appointment.id].map(
+                          (reportUrl, index) => (
+                            <li
+                              key={index}
+                              onClick={() => openModal(reportUrl)}
+                            >
+                              <img
+                                src={reportUrl}
+                                alt={`Report ${index + 1}`}
+                                className="report-thumbnail"
+                              />
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    ) : (
+                      <span>No reports</span>
+                    )}
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          )}
+          {isModalOpen && selectedImage && (
+            <div className="modal-overlay" onClick={closeModal}>
+              <div
+                className="modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="close-btn" onClick={closeModal}>
+                  &times;
+                </span>
+                <img
+                  src={selectedImage}
+                  alt="Consultation Report"
+                  className="modal-image"
+                />
+              </div>
+             
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

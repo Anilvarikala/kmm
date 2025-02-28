@@ -21,6 +21,7 @@ import Appointments from "./Components/Appointments/Appointments";
 import VerifyAccount from "./Components/VerifyAccount/VerfiyAccount";
 import AdminPanel from "./Components/AdminPannel/AdminPannel";
 import { auth } from "./firebase";
+import MedicalForm from "./Components/SeverityCheckModel/SeverityModel";
 function App() {
   // const ProtectedRoute = ({ element }) => {
   //   const [user, setUser] = useState(null);
@@ -40,6 +41,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/medicalform" element={<MedicalForm />}></Route>
         <Route path="/adminpannel" element={<AdminPanel />}></Route>
         <Route path="/verify-account" element={<VerifyAccount />}></Route>
         <Route path="/dashboard" element={<Dashboard />} />

@@ -106,14 +106,14 @@ const ProfileDoc = () => {
   return (
     <>
       <Navbar />
-      <div className="doctor-profile">
+      <div className={`doctor-profile ${editing ? "edit" : ""}`}>
         <h2>Doctor Profile</h2>
         <div className="doctor-image-container">
           <img
             src={imageBase64 || "default_image_path"} // Show base64 image or default placeholder
             alt="Doctor Profile"
             style={{ width: "200px", height: "200px" }}
-            className="doctor-image"
+            className="doctor-image si"
           />
         </div>
         <p>

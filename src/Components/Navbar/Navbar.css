@@ -165,3 +165,147 @@
 body {
   padding-top: 60px; /* Adjust based on navbar height */
 }
+
+
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #f0f4f9;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+  font-size: 12px;
+}
+
+.bottom-nav button i {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.bottom-nav button:hover {
+  color: #007bff;
+}
+/* Bottom Navbar Styling */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  left:0;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bottom-nav button span {
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+/* More Dropdown Styling */
+.more-dropdown-container {
+  position: relative;
+}
+
+.more-dropdown {
+  position: absolute;
+  bottom: 88px; /* Places it above the navbar */
+  left: 68%;
+  ;
+  transform: translateX(-50%);
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 160px;
+  text-align: center;
+  z-index: 1100;
+}
+
+.more-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: none;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.more-dropdown button:hover {
+  background: #f0f0f0;
+}
+
+/* .mobile-submenu {
+  position: absolute;
+  bottom: 60px;
+  left: 30%;
+  transform: translateX(-50%);
+  background: #282a36;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  animation: fadeInDropdown 0.3s forwards;
+}
+.mobile-sub{
+  right:5;
+  left:70%;
+  max-width: 120px
+}
+.mobile-submenu button {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.mobile-submenu button i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #ff9800;
+}
+
+.mobile-submenu button:hover {
+  background: #44475a;
+  color: #ff9800;
+} */

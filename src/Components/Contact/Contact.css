@@ -61,3 +61,11 @@
   background: #2e2e82;
   color: white;
 }
+@media (max-width:500px) {
+  .contact-container{
+    margin: 0;
+  }
+  .contact-container h1{
+    font-size: 30px;
+  }
+}

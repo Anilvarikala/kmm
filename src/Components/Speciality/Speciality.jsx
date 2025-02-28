@@ -216,7 +216,7 @@ const Speciality = () => {
 
   return (
     <>
-      <h2 style={{marginTop:"100px",color:"black"}} className="title">Find your Specialist</h2>
+      <h2 style={{marginTop:"30px",color:"black"}} className="title">Find your Specialist</h2>
       <div className="specialties-container">
         {specialties.map((doctor) => (
           <div

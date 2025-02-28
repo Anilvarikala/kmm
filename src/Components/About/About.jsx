@@ -1,58 +1,6 @@
-// import React from "react";
-// import "./About.css";
-// import doctorImage from "../../assets/d2.jpg"; // Replace with the actual image path
-// import Navbar from "../Navbar";
-// import Footer from "../Footer/Footer";
-
-// const About = () => {
-//   return (
-//     <>
-//     <Navbar/>
-//     <div className="about-container">
-//       <section className="about-header">
-//         <h1>ABOUT <span>US</span></h1>
-//         {/* <p>Welcome to Prescripto, your trusted partner in managing your healthcare needs conveniently and efficiently.</p> */}
-//       </section>
-
-//       <section className="about-content">
-//         <div className="about-image">
-//           <img src={doctorImage} alt="Doctors" />
-//         </div>
-//         <div className="about-text">
-//           <p>Welcome to Prescripto, your trusted partner in managing your healthcare needs conveniently and efficiently.At Prescripto, we understand the challenges individuals face when it comes to scheduling doctor appointments and managing their health records.</p>
-//           <p>Prescripto is committed to excellence in healthcare technology. We continuously strive to enhance our platform, integrating the latest advancements to improve user experience and deliver superior service. Whether you're booking your first appointment or managing ongoing care, Prescripto is here to support you every step of the way.</p>
-//           <h3>Our Vision</h3>
-//           <p>Our vision at Prescripto is to create a seamless healthcare experience for every user. We aim to bridge the gap between patients and healthcare providers, making it easier for you to access the care you need, when you need it.</p>
-//         </div>
-//       </section>
-//     <br /><br />
-//       <section className="why-choose-us">
-//         <h2>WHY <span>CHOOSE US</span></h2>
-//         <div className="features">
-//           <div className="feature-box">
-//             <h3>EFFICIENCY:</h3>
-//             <p>Streamlined appointment scheduling that fits into your busy lifestyle.</p>
-//           </div>
-//           <div className="feature-box feature-highlighted">
-//             <h3>CONVENIENCE:</h3>
-//             <p>Access to a network of trusted healthcare professionals in your area.</p>
-//           </div>
-//           <div className="feature-box">
-//             <h3>PERSONALIZATION:</h3>
-//             <p>Tailored recommendations and reminders to help you stay on top of your health.</p>
-//           </div>
-//         </div>
-//       </section>
-//     </div> <br /><br /><br />
-//     <Footer/>
-//     </>
-//   );
-// };
-
-// export default About;
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./About.css";
-import doctorImage from "../../assets/d2.jpg"; // Replace with your image
+import doctorImage from "../../assets/about.jpg" // Replace with your image
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar";
 
@@ -74,6 +22,10 @@ const About = () => {
     },
   ];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -94,23 +46,28 @@ const About = () => {
           </div>
           <div className="about-text">
             <p>
-              Welcome to Prescripto, your trusted partner in managing your
-              healthcare needs conveniently and efficiently. At Prescripto, we
-              understand the challenges individuals face when it comes to
-              scheduling doctor appointments and managing their health records.
+              DR THANKYOU Healthcare Platform is a comprehensive, AI-powered
+              medical platform designed to bridge the gap between MBBS students
+              (future doctors) and patients in need of medical consultation.
+              This platform enables seamless doctor-patient interactions through
+              video conferencing, offers the capability for patients to upload
+              previous medical reports, and integrates advanced AI tools for
+              disease prediction, severity assessment, and personalized
+              medical recommendations
             </p>
-            <p>
+            {/* <p>
               Prescripto is committed to excellence in healthcare technology. We
               continuously strive to enhance our platform, integrating the
               latest advancements to improve user experience and deliver
               superior service.
-            </p>
+            </p> */}
             <h3>Our Vision</h3>
             <p>
-              Our vision at Prescripto is to create a seamless healthcare
-              experience for every user. We aim to bridge the gap between
-              patients and healthcare providers, making it easier for you to
-              access the care you need, when you need it.
+              At DR THANKYOU Healthcare Platform, our vision is to democratize
+              healthcare by empowering future doctors and enhancing patient care
+              through technology. We strive to create a seamless, AI-driven
+              ecosystem where medical knowledge meets patient needs, fostering
+              accessible, accurate, and personalized healthcare for everyone
             </p>
           </div>
         </section>

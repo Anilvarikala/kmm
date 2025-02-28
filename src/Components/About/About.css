@@ -154,3 +154,22 @@
 .about-text{
   margin-top: -100px
 }
+@media (max-width:600px) {
+    .about-content{
+      margin-top: 100px;
+      margin-left: -60px;
+      margin-right: 20px;
+     
+    }
+    .features{
+      flex-direction: column;
+    }
+    .about-text p{
+      font-family: "Poppins";
+      /* max-width: 350px; */
+      text-align:justify;
+      
+      line-height: 1.6; /* Improves readability */
+  
+    }
+}

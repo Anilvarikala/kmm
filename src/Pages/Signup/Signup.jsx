@@ -5,7 +5,7 @@ import { registerUser } from "../../firebase"; // Assuming this handles Firebase
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../../firebase";// Import Firestore instance from Firebase config
 import { setDoc, doc } from "firebase/firestore"; // Firestore functions
-import "../Login/Login.css"; // Import the same CSS file
+import "./Signup.css" // Import the same CSS file
 
 
 
@@ -45,50 +45,99 @@ const Signup = () => {
   };
 
   return (
-    <div className="container">
-      <h2 className="title">Signup</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleSignup} className="form">
+    // <div className="container">
+    //   <h2 className="title">Signup</h2>
+    //   {error && <p className="error">{error}</p>}
+    //   <form onSubmit={handleSignup} className="form">
+    //     <input
+    //       type="text"
+    //       placeholder="Name"
+    //       value={name}
+    //       onChange={(e) => setName(e.target.value)}
+    //       required
+    //       className="input"
+    //     />
+    //     <input
+    //       type="email"
+    //       placeholder="Email"
+    //       value={email}
+    //       onChange={(e) => setEmail(e.target.value)}
+    //       required
+    //       className="input"
+    //     />
+    //     <input
+    //       type="password"
+    //       placeholder="Password"
+    //       value={password}
+    //       onChange={(e) => setPassword(e.target.value)}
+    //       required
+    //       className="input"
+    //     />
+    //     <input
+    //       type="text"
+    //       placeholder="Phone Number"
+    //       value={phoneNumber}
+    //       onChange={(e) => setPhoneNumber(e.target.value)}
+    //       required
+    //       className="input"
+    //     />
+    //     <button type="submit" className="button">
+    //       Signup
+    //     </button>
+    //   </form>
+    //   <p style={{ marginTop: "10px" }}>
+    //     Already have an account? <Link to="/login">Login</Link>
+    //   </p>
+    // </div>
+    <div className="signup-container">
+    <div className="signup-box">
+      <h2>Signup</h2>
+      <form onSubmit={handleSignup}>
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          className="input-field"
           required
-          className="input"
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="input-field"
           required
-          className="input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="input-field"
           required
-          className="input"
         />
-        <input
-          type="text"
-          placeholder="Phone Number"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          required
-          className="input"
-        />
-        <button type="submit" className="button">
+        <button className="signup-btn" type="submit">
           Signup
         </button>
       </form>
-      <p style={{ marginTop: "10px" }}>
-        Already have an account? <Link to="/login">Login</Link>
+      <p className="login-link">
+        Already have an account? <Link to="/Login">Login</Link>
       </p>
     </div>
+    {/* alert notifications */}
+    <alertContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar
+      newestOnTop
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
+  </div>
   );
 };
 export default Signup;

@@ -53,3 +53,8 @@
   display: flex;
   justify-content: center;
 }
+@media (max-width:468px) {
+   .footer p{
+    font-size:12px
+   }
+}

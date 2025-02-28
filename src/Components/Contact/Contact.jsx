@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Contact.css";
-import contactImage from "../../assets/d2.jpg";
+import contactImage from "../../assets/contact.jpg";
 import Navbar from "../Navbar";
 import Footer from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
+
+  const nav = useNavigate()
+  useEffect(() => {
+    window.scrollTo(0,0)
+  },[])
   return (
     <>
       <Navbar />
@@ -25,12 +31,12 @@ const Contact = () => {
               <strong>Tel:</strong> 7013725762
             </p>
             <p>
-              <strong>Email:</strong> drthankyou@gmail.com
+              <strong>Email:</strong> doctorthankyou2006@gmail.com
             </p>
 
             <h3>CAREERS AT Dr THANKYOU</h3>
-            <p>Learn more about our teams and job openings.</p>
-            <button className="explore-btn">Explore Jobs</button>
+            <p>Explore more about our features.</p>
+            <button onClick={() => nav("/")} className="explore-btn">Visit our Website</button>
           </div>
         </div>
       </div><br /><br />

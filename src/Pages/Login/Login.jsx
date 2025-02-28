@@ -100,42 +100,89 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <h2 className="title">Login</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleLogin} className="form">
-        <input
+    // <div className="container">
+    //   <h2 className="title">Login</h2>
+    //   {error && <p className="error">{error}</p>}
+    //   <form onSubmit={handleLogin} className="form">
+    //     <input
+    //       type="text"
+    //       placeholder="User name"
+    //       value={name}
+    //       onChange={(e) => setName(e.target.value)}
+    //       required
+    //       className="input"
+    //     />
+    //     <input
+    //       type="email"
+    //       placeholder="Email"
+    //       value={email}
+    //       onChange={(e) => setEmail(e.target.value)}
+    //       required
+    //       className="input"
+    //     />
+    //     <input
+    //       type="password"
+    //       placeholder="Password"
+    //       value={password}
+    //       onChange={(e) => setPassword(e.target.value)}
+    //       required
+    //       className="input"
+    //     />
+    //     <button type="submit" className="button">
+    //       Login
+    //     </button>
+    //   </form>
+    //   <p style={{ marginTop: "10px" }}>
+    //     Don't have an account? <Link to="/signup">Create an account</Link>
+    //   </p>
+    // </div>
+    <div className="login-container">
+    <div className="login-box">
+      <h2>Login</h2>
+      <input
           type="text"
           placeholder="User name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          className="input"
+          className="input-field"
         />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="input"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="input"
-        />
-        <button type="submit" className="button">
-          Login
-        </button>
-      </form>
-      <p style={{ marginTop: "10px" }}>
-        Don't have an account? <Link to="/signup">Create an account</Link>
+      <input
+        type="email"
+        required
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="input-field"
+      />
+      <input
+        required
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="input-field"
+      />
+      <button className="login-btn" onClick={handleLogin}>
+        Login
+      </button>
+      <p className="signup-link">
+        Don't have an account? <Link to="/signup">Sign Up</Link>
       </p>
     </div>
+    {/* ToastContainer is used to display the toast notifications */}
+    {/* <ToastContainer
+      position="top-right"
+      autoClose={3000} // Toast will auto-close after 3 seconds
+      hideProgressBar
+      newestOnTop
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    /> */}
+  </div>
   );
 };
 

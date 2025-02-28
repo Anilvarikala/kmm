@@ -99,7 +99,6 @@
 
 // export default Doctors;
 
-
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -117,7 +116,7 @@ import d9 from "../../assets/d9.jpg";
 import d10 from "../../assets/d10.jpg";
 import d11 from "../../assets/d11.jpg";
 import d12 from "../../assets/d12.jpg";
-import "./Doctors.css"
+import "./Doctors.css";
 const Doctors = () => {
   const getDoctorImage = (id) => {
     switch (id) {
@@ -161,7 +160,9 @@ const Doctors = () => {
         ...doc.data(),
       }));
       // Filter doctors where verified is true
-      const verifiedDoctors = doctorList.filter(doctor => doctor.verified === true);
+      const verifiedDoctors = doctorList.filter(
+        (doctor) => doctor.verified === true
+      );
       setDoctors(verifiedDoctors);
     };
     fetchDoctors();
@@ -174,28 +175,33 @@ const Doctors = () => {
         Simply browse through our extensive list of trusted doctors.
       </p> */}
       <div className="doctor-grid">
-        {doctors && doctors.map((doctor, index) => (
-          <div
-            key={doctor.id}
-            className="doctor-card"
-            onClick={() =>
-              navigate(`/doctorprofile/${doctor.id}`, {
-                state: index + 1,
-              })
-            }
-          >
-            <img
-              src={doctor.profileImage || getDoctorImage(index + 1)}
-              alt={doctor.name}
-              className="doctor-img"
-            />
-            <h3 className="doctor-name">{doctor.name}</h3>
-            <p className="specialty">{doctor.fieldOfStudy}</p>
+        {doctors &&
+          doctors.map((doctor, index) => (
+            <div
+              key={doctor.id}
+              className="doctor-card"
+              onClick={() =>
+                navigate(`/doctorprofile/${doctor.id}`, {
+                  state: index + 1,
+                })
+              }
+            >
+              <img
+                src={doctor.profileImage || getDoctorImage(index + 1)}
+                alt={doctor.name}
+                className="doctor-img"
+              />
+              <h3 className="doctor-name">{doctor.name}</h3>
+              <div className="d-flex">
+                <p className="specialty">{doctor.fieldOfStudy}</p>
+                <p className="year specialty">MBBS {doctor.year} year</p>
+              </div>
+              {/* <p className="specialty">{doctor.fieldOfStudy}</p>
             <p className="year specialty">
-              Currently MBBS {doctor.year} year
-            </p>
-          </div>
-        ))}
+              MBBS {doctor.year} year
+            </p> */}
+            </div>
+          ))}
       </div>
     </section>
   );

@@ -126,13 +126,63 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .appointments-container {
-    width: 95%;
+    width: 105%;
+
+    margin-top:0;
     padding: 20px;
+    
+
+  }
+  .appointments-container .appointment-card{
+    border:1px solid #c3c0c0;
+  }
+  .appointments-table td{
+     max-height:30px;
   }
 
   .appointments-table th,
   .appointments-table td {
     font-size: 14px;
     padding: 10px;
+  }
+}
+@media (max-width:500px) {
+  .appointments-container{
+    
+    width: 100%;
+    margin: -20px;
+    padding-left:2px;
+   
+
+  }
+  .appointment-details a{
+    padding:10px;
+
+  }
+  .appointment-details .status-accepted{
+    margin-top:10px;
+    font-size:1.2em
+  }
+  .appointment-details input{
+    margin-top:15px;
+    width:80%
+  }
+  .appointment-card{
+    padding: 10px;
+  }
+  .appointment-card button{
+    width:50%;
+    background-color: rgb(187, 207, 213);
+  }
+  .upload-section{
+    width:90%
+  }
+  .upload-section button{
+    width: 90%;
+  }
+  .appointments-container{
+    margin-left: 0px;
+    width: 100%;
+    overflow-x: hidden;
   }
 }
