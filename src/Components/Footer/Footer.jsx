@@ -21,17 +21,16 @@ const Footer = () => {
             <li onClick={() => nav("/")}>Home</li>
             <li onClick={() => nav("/about")}>About us</li>
             <li onClick={() => nav("/contact")}>Contact us</li>
-            <li>Privacy policy</li>
           </ul>
         </div>
         <div className="footer-section">
           <h3>Get in Touch</h3>
-          <p>+0-000-000-000</p>
-          <p>drthankyou@gmail.com</p>
+          <p>+91 7396753496</p>
+          <p>doctorthankyou2006@gmail.com</p>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>Copyright 2024 @ Dr THANKYOU - All Rights Reserved.</p>
+        <p>Copyright 2025 @ Dr THANKYOU - All Rights Reserved.</p>
       </div>
     </footer>
   );
