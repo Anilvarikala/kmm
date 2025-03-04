@@ -11,7 +11,7 @@ import "./App.css";
 import AllDoctors from "./Components/AllDoctors/AllDoctors";
 import About from "./Components/About/About";
 import Contact from "./Components/Contact/Contact";
-import Doctorprofile from "./Pages/DoctorProfile/Doctorprofile";
+import Doctorprofile from "./Pages/DoctorProfile/DoctorProfile";
 import Profile from "./Components/Profile/Profile";
 import DoctorSignup from "./Pages/DoctorSignup/DoctorSignup";
 import ProfileDoc from "./Pages/ProfileDoc";
