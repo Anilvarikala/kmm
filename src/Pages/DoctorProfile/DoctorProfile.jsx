@@ -93,12 +93,12 @@ const Doctorprofile = () => {
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
-          
+
           draggable: true,
           style: {
-            color: 'white',  // Change this to any color you prefer
+            color: "white", // Change this to any color you prefer
           },
-        
+
           progress: undefined,
         });
       } catch (error) {
