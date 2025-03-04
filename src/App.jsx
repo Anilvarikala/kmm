@@ -54,7 +54,7 @@ function App() {
         <Route path="/doctor-signup" element={<DoctorSignup />}></Route>
         <Route path="/alldoctors" element={<AllDoctors />}></Route>
         <Route path="/myappointments" element={<Appointments />}></Route>
-        <Route path="/doctorprofile/:id" element={<Doctorprofile />}></Route>
+        {/* <Route path="/doctorprofile/:id" element={<Doctorprofile />}></Route> */}
         <Route path="/doctordashboard" element={<DoctorDashBoard />}></Route>
         {/* <Route path="/doctor/:id" element={<DoctorProfile />} /> */}
       </Routes>
