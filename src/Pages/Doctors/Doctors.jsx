@@ -194,7 +194,7 @@ const Doctors = () => {
               <h3 className="doctor-name">{doctor.name}</h3>
               <div className="d-flex">
                 <p className="specialty">{doctor.fieldOfStudy}</p>
-                <p className="year specialty">MBBS {doctor.qualification} year</p>
+                <p className="year specialty">{doctor.qualification}</p>
               </div>
               {/* <p className="specialty">{doctor.fieldOfStudy}</p>
             <p className="year specialty">
