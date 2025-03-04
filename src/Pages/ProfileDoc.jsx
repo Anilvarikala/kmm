@@ -388,7 +388,7 @@ const ProfileDoc = () => {
           {editing ? (
             <input
               name="qualification"
-              value={formData.qualification || ""}
+              value={formData.qualification}
               onChange={handleChange}
             />
           ) : (

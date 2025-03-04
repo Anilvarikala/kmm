@@ -128,10 +128,10 @@ const Doctorprofile = () => {
               {doctor.name} <span className="verified">✔</span>
             </h2>
             <p>
-              {doctor.fieldOfStudy} | MBBS {doctor.year} year
+              {doctor.name} | {doctor.qualification}
             </p>
             <p>
-              <strong>Appointment fee:</strong> $50
+              <strong>Appointment fee:</strong> $1
             </p>
             <p className="about">
               Dr. {doctor.name} is committed to providing excellent medical

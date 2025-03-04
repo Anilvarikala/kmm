@@ -323,6 +323,8 @@ const AllDoctors = () => {
                 <img src={doctor.image} alt={doctor.name} className="doctor-img" />
                 <h3 className="doctor-name">{doctor.name}</h3>
                 <p className="specialty">{doctor.fieldOfStudy}</p>
+                {/* <p className="year specialty">{doctor.qualification}</p> */}
+                
               </div>
             ))
           ) : (

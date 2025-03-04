@@ -616,7 +616,7 @@ const Appointments = () => {
                   </p>
                   <p>
                     Time:{" "}
-                    {appointment.appointmentTime || "Not selected by doctor"}
+                    {appointment.timing}
                   </p>
                   {appointment.meetingId !== "not yet decided" && (
                     <a

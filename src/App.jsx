@@ -11,7 +11,7 @@ import "./App.css";
 import AllDoctors from "./Components/AllDoctors/AllDoctors";
 import About from "./Components/About/About";
 import Contact from "./Components/Contact/Contact";
-import Doctorprofile from "./Pages/DoctorProfile/Doctorprofile";
+import Doctorprofile from "./Pages/DoctorProfile/DoctorProfile";
 import Profile from "./Components/Profile/Profile";
 import DoctorSignup from "./Pages/DoctorSignup/DoctorSignup";
 import ProfileDoc from "./Pages/ProfileDoc";
@@ -54,7 +54,7 @@ function App() {
         <Route path="/doctor-signup" element={<DoctorSignup />}></Route>
         <Route path="/alldoctors" element={<AllDoctors />}></Route>
         <Route path="/myappointments" element={<Appointments />}></Route>
-        {/* <Route path="/doctorprofile/:id" element={<Doctorprofile />}></Route> */}
+        <Route path="/doctorprofile/:id" element={<Doctorprofile />}></Route>
         <Route path="/doctordashboard" element={<DoctorDashBoard />}></Route>
         {/* <Route path="/doctor/:id" element={<DoctorProfile />} /> */}
       </Routes>
