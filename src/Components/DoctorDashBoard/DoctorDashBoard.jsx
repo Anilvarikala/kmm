@@ -274,7 +274,7 @@ const DoctorDashBoard = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            Join Meeting
+                            Create Meeting
                           </a>
                         ) : (
                           "-"
