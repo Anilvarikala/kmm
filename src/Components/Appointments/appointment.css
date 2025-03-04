@@ -181,8 +181,8 @@ body {
     width: 90%;
   }
   .appointments-container{
-    margin-left: 0px;
-    width: 100%;
+    margin-left: 10px;
+    width: 90%;
     overflow-x: hidden;
   }
 }

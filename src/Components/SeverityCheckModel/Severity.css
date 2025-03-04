@@ -197,7 +197,8 @@ select {
 }
 @media (max-width:500px) {
   .main-div{
-    min-width:300px
+    min-width:300px;
+  
   }
   .sym input{
     width: 92%;

@@ -448,6 +448,7 @@ const Navbar = () => {
       await signOut(getAuth());
       setDropdown(false);
       setMoreDropdown(false);
+      
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);

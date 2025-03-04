@@ -95,6 +95,9 @@ textarea {
     max-width: 288px;
     max-height:900px;
   }
+  .d-p2{
+   min-height:900px
+  }
 .book-button{
   margin-bottom:15vh
 }

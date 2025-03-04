@@ -213,6 +213,9 @@ a:hover {
 .appointment-card{
    margin: 20px;
 }
+.meeting-id{
+  width:80%
+}
 @media (max-width:500px) {
   .appointments-container{
     

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../firebase"; // Import Firebase Firestore reference
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-
+import "./VerifyAccount.css"
 const VerifyAccount = () => {
   const auth = getAuth();
   const user = auth.currentUser;

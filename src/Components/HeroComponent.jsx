@@ -27,15 +27,15 @@ const HeroComponent = ({ flag }) => {
         alt=""
         className="hero-image"
       />
-      {!user && hero && (
-        <button
+      
+        {/* <button
           className="btn"
-          onClick={() => nav("/login")}
-          style={{ position: "absolute", bottom: "7vh", left: "20vw" }}
+          onClick={() => nav("/doctor-signup")}
+          style={{ position: "absolute",fontSize:"0.8rem", bottom: "-275vh", left: "12vw" }}
         >
           Create an account
-        </button>
-      )}
+        </button> */}
+      
       {/* {!flag && (
         <button className="btn" style={{position:"absolute",bottom:"0vh"}}>Create Account ? </button>
       )} */}

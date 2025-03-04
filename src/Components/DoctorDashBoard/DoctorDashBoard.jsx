@@ -11,7 +11,8 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import "./DoctorDashBoard.css";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const DoctorDashBoard = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -113,7 +114,7 @@ const DoctorDashBoard = () => {
 
   const handleConfirmTime = async () => {
     if (!selectedTime[currentAppointmentId]) {
-      alert("Please select a time for the appointment.");
+      toast.error("Please select a time for the appointment.");
       return;
     }
 
@@ -161,11 +162,16 @@ const DoctorDashBoard = () => {
     const meetingId = meetingIdInputs[appointmentId];
 
     if (!meetingId) {
-      alert("Meeting is successfully created!");
+      toast.success("Meeting ID saved successfully!",{
+        style:{
+          color:"white"
+        }
+      });
       return;
     }
 
     try {
+
       const appointmentRef = doc(db, "appointments", appointmentId);
       await updateDoc(appointmentRef, { meetingId });
 
@@ -177,9 +183,11 @@ const DoctorDashBoard = () => {
       setMeetingIdInputs((prevInputs) => {
         const updatedInputs = { ...prevInputs };
         delete updatedInputs[appointmentId];
+        //toast.success("Meeting ID saved successfully!");
         return updatedInputs;
-      });
+      });toast.success("Meeting ID saved successfully!");
     } catch (error) {
+      toast.error("Failed to save Meeting ID.");
       console.error("Error saving meeting ID:", error);
     }
   };
@@ -246,6 +254,7 @@ const DoctorDashBoard = () => {
                           currentAppointmentId === appointment.id ? (
                           <div>
                             <input
+                            className="meeting-id"
                               type="time"
                               value={selectedTime[currentAppointmentId] || ""}
                               onChange={handleTimeChange}
@@ -278,6 +287,7 @@ const DoctorDashBoard = () => {
                           <div>
                             <input
                               type="text"
+                              className="meeting-id"
                               value={
                                 meetingIdInputs[appointment.id] ||
                                 appointment.meetingId ||
@@ -489,6 +499,7 @@ const DoctorDashBoard = () => {
           )}
         </div>
       )}
+      <ToastContainer/>
     </>
   );
 };

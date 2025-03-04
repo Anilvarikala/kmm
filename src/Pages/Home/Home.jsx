@@ -51,7 +51,7 @@ const Home = () => {
 
       {/* Show "Get Verified" button only if the doctor is NOT verified */}
       {!isVerified && (
-        <div style={{ textAlign: "center", margin: "20px 0" }}>
+        <div style={{ textAlign: "center", marginTop: "38px"}}>
           <button
             onClick={() => navigate("/verify-account")}
             style={{
