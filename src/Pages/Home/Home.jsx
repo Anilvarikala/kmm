@@ -91,7 +91,8 @@ const Home = () => {
           </Link>
         </button>
       )}
-
+      <br />
+        <br />
       <Footer />
     </div>
   );

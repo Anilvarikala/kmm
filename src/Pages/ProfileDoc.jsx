@@ -388,6 +388,7 @@ const ProfileDoc = () => {
           {editing ? (
             <input
               name="qualification"
+              placeholder="MBBS 5th year"
               value={formData.qualification}
               onChange={handleChange}
             />
