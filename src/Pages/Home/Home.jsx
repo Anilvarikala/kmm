@@ -91,8 +91,13 @@ const Home = () => {
           </Link>
         </button>
       )}
+<<<<<<< HEAD
       <br />
         <br />
+=======
+      <br/>
+      <br/>
+>>>>>>> c53e11d70cd00d48b6e5e619c1aaec386518c6c6
       <Footer />
     </div>
   );

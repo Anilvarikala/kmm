@@ -221,7 +221,7 @@ const VerifyAccount = () => {
         placeholder="Enter your address"
       />
 
-      <label>Upload Profile Image</label>
+      <label>Upload Previous year Memo</label>
       <input
         type="file"
         onChange={(e) => handleImageChange(e, "profileImage")}
