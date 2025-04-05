@@ -12,7 +12,7 @@ const Footer = () => {
           <p>
             DR THANKYOU Healthcare Platform is an AI-powered medical platform
             connecting MBBS students (future doctors) with patients for seamless
-            video consultations. 
+            video consultations.
           </p>
         </div>
         <div className="footer-section">
@@ -24,7 +24,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-section">
-          <h3>Get in Touch</h3>
+          <h4>Get in Touch With Us</h4>
           <p>+91 7396753496</p>
           <p>doctorthankyou2006@gmail.com</p>
         </div>

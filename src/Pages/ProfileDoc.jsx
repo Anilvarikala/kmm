@@ -233,7 +233,6 @@
 
 // export default ProfileDoc;
 
-
 import React, { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
@@ -316,11 +315,10 @@ const ProfileDoc = () => {
         });
         setDoctor({ ...formData, profileImage: imageBase64 });
 
-        toast.success("Profile updated successfully!",{
+        toast.success("Profile updated successfully!", {
           style: {
-            color: 'white',  // Change this to any color you prefer
+            color: "white", // Change this to any color you prefer
           },
-        
         }); // Success toast
         setEditing(false);
       }
@@ -389,17 +387,14 @@ const ProfileDoc = () => {
             <input
               name="qualification"
               placeholder="MBBS 5th year"
-<<<<<<< HEAD
-              value={formData.qualification}
-=======
               value={formData.qualification || ""}
->>>>>>> c53e11d70cd00d48b6e5e619c1aaec386518c6c6
               onChange={handleChange}
             />
           ) : (
             doctor.qualification || "Not provided"
           )}
         </p>
+
         <p>
           <strong>Field of Study:</strong>{" "}
           {editing ? (
