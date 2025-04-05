@@ -302,17 +302,6 @@ const Home = () => {
           </Link>
         </button>
       )}
-
-
-      <br />
-      <br />
-
-
-      <br />
-        <br />
-
-      <br/>
-      <br/>
       <Footer />
     </div>
   );

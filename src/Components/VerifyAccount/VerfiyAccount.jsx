@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../firebase"; // Import Firebase Firestore reference
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import "./VerifyAccount.css"
+import "./VerifyAccount.css";
+import { AlignCenter } from "lucide-react";
 const VerifyAccount = () => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -60,44 +61,9 @@ const VerifyAccount = () => {
     }
   };
 
-  // Handle form submission to Firestore
-  // const handleUpload = async () => {
-  //   if (!user) return;
-
-  //   if (
-  //     !formData.name ||
-  //     !formData.phone ||
-  //     !formData.email ||
-  //     !formData.dob ||
-  //     !formData.batch ||
-  //     !formData.collegeId ||
-  //     !formData.collegeName ||
-  //     !formData.percentage ||
-  //     !formData.address ||
-  //     !formData.profileImage ||
-  //     !formData.idCardImage
-  //   ) {
-  //     alert("Please provide all details");
-  //     return;
-  //   }
-
-  //   setUploading(true);
-
-  //   try {
-  //     const userRef = doc(db, "doctors", user.uid);
-
-  //     await setDoc(userRef, formData, { merge: true }); // Merge to prevent data loss
-
-  //     alert("User details uploaded successfully");
-  //   } catch (error) {
-  //     console.error("Error saving user data:", error);
-  //   }
-
-  //   setUploading(false);
-  // };
   const handleUpload = async () => {
     if (!user) return;
-  
+
     if (
       !formData.name ||
       !formData.phone ||
@@ -114,33 +80,33 @@ const VerifyAccount = () => {
       alert("Please provide all details");
       return;
     }
-  
+
     setUploading(true);
-  
+
     try {
       const userRef = doc(db, "doctors", user.uid);
-  
+
       // Upload user details to Firestore, merging data to prevent overwriting
       await setDoc(userRef, formData, { merge: true });
-  
-      alert("User details uploaded successfully. You will receive a message regarding your verified status in your profile section.");
-  
+
+      alert(
+        "User details uploaded successfully. You will receive a message regarding your verified status in your profile section."
+      );
+
       // Optionally, you could set a "verified" field in the Firestore document to "false" initially
       const doctorRef = doc(db, "doctors", user.uid);
       await setDoc(doctorRef, { verified: false }, { merge: true });
-  
     } catch (error) {
       console.error("Error saving user data:", error);
     }
-  
+
     setUploading(false);
   };
-  
 
   return (
     <div className="user-upload-form">
-      <h2>Upload User Details</h2>
-
+      <h2>Account Verification</h2>
+      <p className="para">Please provide your details for verification</p>
       <label>Name</label>
       <input
         type="text"
