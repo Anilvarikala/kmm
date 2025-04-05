@@ -13,36 +13,32 @@
   font-weight: 700;
   margin-bottom: 2rem;
   text-align: center;
-  position: relative;
-}
-
-.medical-form-container h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background: linear-gradient(to right, #3b82f6, #60a5fa);
-  border-radius: 2px;
-}
-
-form {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
 }
 
-label {
+.form-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
   font-weight: 600;
   color: #475569;
   margin-bottom: 0.5rem;
-  display: block;
 }
 
-input[type="text"],
-select {
+.input-group input,
+.input-group select {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 2px solid #e2e8f0;
@@ -52,91 +48,117 @@ select {
   background: white;
 }
 
-input[type="text"]:focus,
-select:focus {
+.input-group input:focus,
+.input-group select:focus {
   outline: none;
   border-color: #60a5fa;
   box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
 }
 
-.additional-symptoms {
-  background: #f8fafc;
-  padding: 1.5rem;
-  border-radius: 15px;
-  border: 2px solid #e2e8f0;
+.symptom-input-group {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
 }
 
-.additional-symptoms h4 {
-  color: #1e293b;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
+.symptom-input-group input {
+  flex: 1;
 }
 
-.additional-symptoms input {
-  margin-bottom: 1rem;
-}
-
-button {
+.check-severity-btn-inline {
   padding: 0.75rem 1.5rem;
-  border: none;
+  background: #3b82f6;
+  color: white;
   border-radius: 10px;
   font-weight: 600;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
   transition: all 0.3s ease;
 }
 
-button[type="submit"] {
-  background: linear-gradient(to right, #3b82f6, #60a5fa);
-  color: white;
-  font-size: 1rem;
-  margin-top: 1rem;
-}
-
-button[type="submit"]:hover {
-  background: linear-gradient(to right, #2563eb, #3b82f6);
+.check-severity-btn-inline:hover:not(:disabled) {
+  background: #2563eb;
   transform: translateY(-1px);
 }
 
-button[type="submit"]:disabled {
+.check-severity-btn-inline:disabled {
   background: #94a3b8;
   cursor: not-allowed;
 }
 
-.check-severity-btn {
-  background: #f8fafc;
-  color: #3b82f6;
-  border: 2px solid #3b82f6;
-  width: 100%;
-  margin-top: 1rem;
-  font-weight: 600;
+.extra-symptom-input {
+  display: flex;
+  gap: 0.5rem;
 }
 
-.check-severity-btn:hover {
-  background: #eff6ff;
+.add-symptom-btn {
+  padding: 0.75rem;
+  background: #f1f5f9;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  color: #475569;
+  transition: all 0.3s ease;
 }
 
-.book-appointment-btn {
-  background: #22c55e;
-  color: white;
-  width: 100%;
-  margin-top: 1rem;
-}
-
-.book-appointment-btn:hover {
-  background: #16a34a;
-}
-
-.response-container {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: #f0f9ff;
-  border-radius: 15px;
-  border-left: 4px solid #3b82f6;
+.add-symptom-btn:hover {
+  background: #e2e8f0;
   color: #1e293b;
-  line-height: 1.6;
 }
 
+.extra-symptoms-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.symptom-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f1f5f9;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+.remove-symptom {
+  cursor: pointer;
+  color: #94a3b8;
+  transition: color 0.3s ease;
+}
+
+.remove-symptom:hover {
+  color: #ef4444;
+}
+
+.check-severity-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #3b82f6;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.check-severity-btn:hover:not(:disabled) {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.check-severity-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Modal Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -147,130 +169,382 @@ button[type="submit"]:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  padding: 1rem;
+  z-index: 50;
   backdrop-filter: blur(4px);
 }
 
 .modal-container {
   background: white;
-  padding: 2rem;
   border-radius: 20px;
-  width: 90%;
+  width: 100%;
   max-width: 600px;
   max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-.modal-container h3 {
-  color: #1e293b;
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h3 {
   font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+}
+
+.close-modal {
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+  color: #ef4444;
+}
+
+.modal-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.question-item {
   margin-bottom: 1.5rem;
-  font-weight: 700;
+}
+
+.question-item label {
+  display: block;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 0.5rem;
+}
+
+.question-item select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.modal-footer {
+  padding: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.submit-assessment-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #3b82f6;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.submit-assessment-btn:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.submit-assessment-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Severity Result */
+.severity-result {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-.modal-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.modal-container label {
+.severity-result h3 {
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #475569;
+  color: #1e293b;
+  margin-bottom: 1rem;
 }
 
-.modal-container select {
-  width: 100%;
-  margin-top: 0.5rem;
+.severity-badge {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
 }
 
-.close-modal-btn {
-  background: #ef4444;
+.severity-badge.normal {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.severity-badge.moderate {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.severity-badge.high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.get-assistance-btn {
+  padding: 0.75rem 1.5rem;
+  background: #22c55e;
   color: white;
-  margin-top: 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.get-assistance-btn:hover:not(:disabled) {
+  background: #16a34a;
+}
+
+/* Assistance Container */
+.assistance-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.specialist-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 15px;
+}
+
+.specialist-section h3 {
+  color: #1e293b;
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.specialist-name {
+  color: #2563eb;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.recommendations-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.recommendation-group {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 15px;
+}
+
+.recommendation-group h4 {
+  color: #1e293b;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.recommendation-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recommendation-group li {
+  color: #475569;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.recommendation-group li:last-child {
+  border-bottom: none;
+}
+
+.urgent-message {
+  text-align: center;
+  color: #dc2626;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 2rem;
+  background: #fee2e2;
+  border-radius: 15px;
+  margin: 1.5rem 0;
+}
+
+.assistance-content {
+  margin-bottom: 2rem;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+.assistance-content h1,
+.assistance-content h2,
+.assistance-content h3 {
+  color: #1e293b;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem;
+}
+
+.assistance-content ul,
+.assistance-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.assistance-content li {
+  margin-bottom: 0.5rem;
+}
+
+.book-appointment-btn {
   width: 100%;
+  padding: 1rem;
+  background: #22c55e;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.close-modal-btn:hover {
-  background: #dc2626;
+.book-appointment-btn:hover {
+  background: #16a34a;
 }
 
-/* Loading animation */
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-button[type="submit"]:disabled {
-  animation: pulse 1.5s infinite;
-}
-
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 640px) {
   .medical-form-container {
     margin: 1rem;
-    padding: 1.5rem;
+    padding: 1rem;
+  }
+
+  .medical-form-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-section,
+  .severity-result,
+  .assistance-container {
+    padding: 1rem;
   }
 
   .modal-container {
-    width: 95%;
-    padding: 1.5rem;
+    margin: 1rem;
+    max-height: 85vh;
+  }
+
+  .modal-header h3 {
+    font-size: 1.25rem;
   }
 }
 
-/* Custom scrollbar */
-.modal-container::-webkit-scrollbar {
+/* Custom Scrollbar */
+.modal-content::-webkit-scrollbar {
   width: 8px;
 }
 
-.modal-container::-webkit-scrollbar-track {
+.modal-content::-webkit-scrollbar-track {
   background: #f1f5f9;
   border-radius: 4px;
 }
 
-.modal-container::-webkit-scrollbar-thumb {
+.modal-content::-webkit-scrollbar-thumb {
   background: #94a3b8;
   border-radius: 4px;
 }
 
-.modal-container::-webkit-scrollbar-thumb:hover {
+.modal-content::-webkit-scrollbar-thumb:hover {
   background: #64748b;
 }
 
-/* Add symptom button styling */
-button[type="button"] {
-  background: #f1f5f9;
-  color: #475569;
-  border: 2px dashed #cbd5e1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-}
+/* Add these new styles to your existing CSS file */
 
-button[type="button"]:hover {
+.message-section {
   background: #f8fafc;
-  border-color: #94a3b8;
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin: 1.5rem 0;
+  text-align: center;
 }
 
-/* Input group styling */
-.input-group {
-  position: relative;
-  margin-bottom: 1rem;
+.message-section.high {
+  background: #fee2e2;
+  border: 2px solid #dc2626;
 }
 
-.input-group input {
-  padding-right: 2.5rem;
+.message-section.moderate {
+  background: #fef9c3;
+  border: 2px solid #854d0e;
 }
 
-.input-group .icon {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #94a3b8;
+.message-section.normal {
+  background: #f0fdf4;
+  border: 2px solid #166534;
+}
+
+.consultation-message {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.high .consultation-message {
+  color: #dc2626;
+}
+
+.moderate .consultation-message {
+  color: #854d0e;
+}
+
+.normal .consultation-message {
+  color: #166534;
+}
+
+.book-appointment-btn.high {
+  background: #dc2626;
+  animation: pulse 2s infinite;
+}
+
+.book-appointment-btn.moderate {
+  background: #ca8a04;
+}
+
+.book-appointment-btn.normal {
+  background: #16a34a;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
