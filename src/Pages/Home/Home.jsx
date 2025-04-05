@@ -302,9 +302,19 @@ const Home = () => {
           </Link>
         </button>
       )}
+<<<<<<< HEAD
 
       <br />
       <br />
+=======
+<<<<<<< HEAD
+      <br />
+        <br />
+=======
+      <br/>
+      <br/>
+>>>>>>> c53e11d70cd00d48b6e5e619c1aaec386518c6c6
+>>>>>>> 6e25ac09abb624d5f901ce22d955e109c8662e93
       <Footer />
     </div>
   );

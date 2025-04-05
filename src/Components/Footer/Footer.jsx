@@ -21,7 +21,6 @@ const Footer = () => {
             <li onClick={() => nav("/")}>Home</li>
             <li onClick={() => nav("/about")}>About us</li>
             <li onClick={() => nav("/contact")}>Contact us</li>
-            <li>Privacy policy</li>
           </ul>
         </div>
         <div className="footer-section">
@@ -31,7 +30,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>Copyright 2024 @ Dr THANKYOU - All Rights Reserved.</p>
+        <p>Copyright 2025 @ Dr THANKYOU - All Rights Reserved.</p>
       </div>
     </footer>
   );

@@ -389,7 +389,11 @@ const ProfileDoc = () => {
             <input
               name="qualification"
               placeholder="MBBS 5th year"
+<<<<<<< HEAD
               value={formData.qualification}
+=======
+              value={formData.qualification || ""}
+>>>>>>> c53e11d70cd00d48b6e5e619c1aaec386518c6c6
               onChange={handleChange}
             />
           ) : (
