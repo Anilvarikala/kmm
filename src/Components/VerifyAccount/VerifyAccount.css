@@ -59,7 +59,7 @@ input[type="date"]:focus {
   border-color: #007bff;
 }
 
-button {
+.btn-verify {
   width: 100%;
   padding: 12px;
   background: #007bff;
@@ -72,11 +72,11 @@ button {
   transition: background 0.3s ease-in-out;
 }
 
-button:hover {
+.btn-verify:hover {
   background: #0056b3;
 }
 
-button:disabled {
+.btn-verify:disabled {
   background: #ccc;
   cursor: not-allowed;
 }

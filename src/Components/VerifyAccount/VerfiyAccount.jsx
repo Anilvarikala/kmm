@@ -199,7 +199,7 @@ const VerifyAccount = () => {
         onChange={(e) => handleImageChange(e, "idCardImage")}
       />
 
-      <button onClick={handleUpload} disabled={uploading}>
+      <button className="btn-verify" onClick={handleUpload} disabled={uploading}>
         {uploading ? "Uploading..." : "Upload"}
       </button>
 
